@@ -1,13 +1,18 @@
 <#import "master.ftlh" as m>
 <@m.master>
-<html>
-<head>
-  <title>Welcome!</title>
-</head>
-<body>
-  <h1>Welcome John Doe!</h1>
-  <div class="btn btn-success">Hi</div>
-  <p>Hello ${name}!</p>
-</body>
-</html>
+	<div class="container">
+		<div class="row">
+		<div class="col">
+  			<img src="/example.jpeg" class="img-thumbnail" width="1000px">
+  			<h4 align="center" class="headertext">Top creations</h4>
+  			<img src="/example2.jpg" class="img-thumbnail" width ="500px">
+  			<img src="/example3.jpg" class="img-thumbnail" width="500px">
+  		</div>
+  		</div>
+  	</div>
+  	<style>
+  		.headertext {
+  			padding: 20px;
+  			}
+  	</style>
 </@m.master>

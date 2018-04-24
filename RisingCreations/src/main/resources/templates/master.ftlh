@@ -19,7 +19,24 @@
 
 </head>
 <body>
-    <#nested/>
+	<div class="container-fluid">  
+		<div class="row content">
+			<div class="col-sm-3 sidenav">
+			<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="/profile.png" alt="Card image cap">
+  <div class="card-body">
+    <h4 class="card-title">Mikkey Mouse</h4>
+    <p class="card-text">Beskrivelse og sånt</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+			</div>
+			<div class="col-sm-9">
+	 		<#nested/>
+	 		</div>
+
+		</div>
+
 </body>
 </html>
 </#macro>
