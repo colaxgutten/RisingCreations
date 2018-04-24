@@ -11,17 +11,17 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private String userName;
+	private String username;
 	private String password;
 	
-	public User(String userName, String password){
-		this.userName = userName;
+	public User(String username, String password){
+		this.username = username;
 		this.password = password;
 	}
 
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", password=" + password + "]";
+		return "User [username=" + username + ", password=" + password + "]";
 	}
 	
 	
