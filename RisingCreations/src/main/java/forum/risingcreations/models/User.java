@@ -13,6 +13,9 @@ public class User {
 	private Long id;
 	private String username;
 	private String password;
+	private String lastname;
+	
+	protected User () {}
 	
 	public User(String username, String password){
 		this.username = username;
