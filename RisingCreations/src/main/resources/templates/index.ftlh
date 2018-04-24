@@ -4,6 +4,6 @@
 </head>
 <body>
   <h1>Welcome John Doe!</h1>
-  <p th:text="'Hello, ' +${name} + '!'"/>
+  <p>Hello ${name}!</p>
 </body>
 </html>
