@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import forum.risingcreations.models.Post;
 import forum.risingcreations.repositories.PostRepository;
 
+import java.util.List;
+
 @Service
 public class PostService {
 	
@@ -14,6 +16,14 @@ public class PostService {
 
 	public Iterable<Post> getAllPosts() {
 		return postRepository.findAll();
+	}
+
+	public List<Post> getAllPostsAsList() {
+		return postRepository.findAll();
+	}
+
+	public List<Long> getAllPostsAsIdList() {
+		return postRepository.findAllAsIdList();
 	}
 
 	public Post getById(long id) {
