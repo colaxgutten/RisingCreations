@@ -13,8 +13,7 @@ public class User {
 	private Long id;
 	private String username;
 	private String password;
-	private String lastname;
-	
+
 	protected User () {}
 	
 	public User(String username, String password){
@@ -24,8 +23,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + "]";
+		return "User{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				'}';
 	}
-	
-	
 }
