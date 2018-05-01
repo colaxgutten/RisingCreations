@@ -12,6 +12,16 @@ public class PostService {
 	@Autowired
 	PostRepository postRepository;
 
+	public Iterable<Post> getAllPosts() {
+		return postRepository.findAll();
+	}
+
+	public Post getById(long id) {
+		return postRepository.findById(id).orElse(null);
+	}
+
+	public void delete(Post post) {	postRepository.delete(post); }
+
 	public void save(Post post) {
 		postRepository.save(post);	
 	}
