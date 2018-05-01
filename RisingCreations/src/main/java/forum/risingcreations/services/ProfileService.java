@@ -18,6 +18,11 @@ public class ProfileService {
     }
 
     public List<Profile> findProfileByName(String name) {
+    	
         return profileRepository.findProfileByName(name);
+    }
+    
+    public void saveProfile(Profile profile) {
+    	profileRepository.save(profile);
     }
 }
