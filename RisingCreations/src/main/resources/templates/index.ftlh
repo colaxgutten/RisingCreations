@@ -10,38 +10,12 @@
                             <div class="desc">
                                 ${post.title}
                             </div>
-                            <img src="/post/${post.id}/img" onclick="imgclick('/post/${post.id}/img', '${post.title}')"
-                                 class="gallery-img">
                         </a>
+                        <img src="/post/${post.id}/img" onclick="imgclick('/post/${post.id}/img', '${post.title}')"
+                             class="gallery-img">
                     </div>
                     </#list>
                 </#if>
-                <!--
-                <div class="gallery">
-                    <a href="#">
-                        <div class="desc">Example 1</div>
-                    </a>
-                    <img src="/example.jpeg" onclick="imgclick('/example.jpeg', 'Example 1')" class="gallery-img" width="1000px">
-                </div>
-                <div class="gallery">
-                    <a href="#">
-                        <div class="desc">Example 2</div>
-                        <img src="/example2.jpg" onclick="imgclick('/example2.jpg', 'Example 2')" class="gallery-img" width="1000px">
-                    </a>
-                </div>
-                <div class="gallery">
-                    <a href="#">
-                        <div class="desc">Example 3</div>
-                        <img src="/example3.jpg" onclick="imgclick('/example3.jpg', 'Example 3')" class="gallery-img" width="1000px">
-                    </a>
-                </div>
-                <div class="gallery">
-                    <a href="#">
-                        <div class="desc">Example 4</div>
-                        <img src="/profile.png" onclick="imgclick('/profile.png', 'Example 4')" class="gallery-img" width="1000px">
-                    </a>
-                </div>
-                -->
             </div>
             <div id="modal" class="custommodal">
                 <span id="close" class="close-btn">&times;</span>
