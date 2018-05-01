@@ -29,6 +29,11 @@ public class Post {
 	private String title;
 	private String description;
 	private byte[] image;
+
+	public void addComment(Comment comment) {
+		comment.setPost(this);
+		this.comments.add(comment);
+	}
 	
 	public Long getId() {
 		return id;
