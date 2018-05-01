@@ -1,8 +1,14 @@
 package forum.risingcreations.controllers;
 
+import forum.risingcreations.models.Post;
+import forum.risingcreations.services.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ForumPostController {
@@ -13,6 +19,9 @@ public class ForumPostController {
     private final String commentname = "Kari Nordmann";
     private final String commentdate = "March 10, 2018";
 
+    @Autowired
+    PostService postService;
+
     @GetMapping("/post/{postid}")
     public String getForumPost(Model model) {
         model.addAttribute("title", title);
@@ -22,5 +31,12 @@ public class ForumPostController {
         model.addAttribute("commentdate", commentdate);
 
         return "forumpost";
+    }
+
+    @GetMapping( value = "/post/{postid}/img", produces = MediaType.IMAGE_PNG_VALUE)
+    public @ResponseBody
+    byte[] getForumPostImage(@PathVariable("standID") Long postid) {
+        Post p = postService.getById(postid);
+        return p.getImage();
     }
 }
