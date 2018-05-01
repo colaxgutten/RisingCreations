@@ -8,5 +8,5 @@ import forum.risingcreations.models.User;
 
 public interface UserRepository extends CrudRepository<User, Long>{
 	
-	List<User> findByUsername(String username);
+	public List<User> findByUsername(String username);
 }

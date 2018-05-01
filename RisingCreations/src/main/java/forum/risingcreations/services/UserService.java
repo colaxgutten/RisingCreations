@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import forum.risingcreations.models.Post;
 import forum.risingcreations.models.User;
 import forum.risingcreations.repositories.UserRepository;
 
@@ -21,5 +22,6 @@ public class UserService {
 	public void saveUser(User user){
 		userRepository.save(user);
 	}
+
 
 }
