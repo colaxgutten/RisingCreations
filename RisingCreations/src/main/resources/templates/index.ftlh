@@ -3,6 +3,20 @@
 	<div class="container">
         <div class="row">
             <div class="col-sm-8 offset-sm-2">
+                <#if posts??>
+                    <#list posts as post>
+                    <div class="gallery">
+                        <a href="/post/${post.id}">
+                            <div class="desc">
+                                ${post.title}
+                            </div>
+                            <img src="/post/${post.id}/img" onclick="imgclick('/post/${post.id}/img', '${post.title}')"
+                                 class="gallery-img">
+                        </a>
+                    </div>
+                    </#list>
+                </#if>
+                <!--
                 <div class="gallery">
                     <a href="#">
                         <div class="desc">Example 1</div>
@@ -27,6 +41,7 @@
                         <img src="/profile.png" onclick="imgclick('/profile.png', 'Example 4')" class="gallery-img" width="1000px">
                     </a>
                 </div>
+                -->
             </div>
             <div id="modal" class="custommodal">
                 <span id="close" class="close-btn">&times;</span>
@@ -81,8 +96,8 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
         }
 
         .custommodal-content {
@@ -111,13 +126,21 @@
         }
 
         @-webkit-keyframes zoom {
-            from {-webkit-transform:scale(0)}
-            to {-webkit-transform:scale(1)}
+            from {
+                -webkit-transform: scale(0)
+            }
+            to {
+                -webkit-transform: scale(1)
+            }
         }
 
         @keyframes zoom {
-            from {transform:scale(0)}
-            to {transform:scale(1)}
+            from {
+                transform: scale(0)
+            }
+            to {
+                transform: scale(1)
+            }
         }
 
         .close-btn {
@@ -137,7 +160,7 @@
             cursor: pointer;
         }
 
-        @media only screen and (max-width: 700px){
+        @media only screen and (max-width: 700px) {
             .custommodal-content {
                 width: 100%;
             }
@@ -148,7 +171,7 @@
         var modalimage = document.getElementById('modalimg');
         var caption = document.getElementById('caption');
 
-        function imgclick(url, title){
+        function imgclick(url, title) {
             modal.style.display = "block";
             caption.textContent = title;
             modalimage.src = url;
@@ -156,11 +179,11 @@
 
         var close = document.getElementById('close');
 
-        close.onclick = function() {
+        close.onclick = function () {
             modal.style.display = "none";
         }
 
-        $(document).keyup(function(e) {
+        $(document).keyup(function (e) {
             if (e.keyCode == 27) { // escape key maps to keycode `27`
                 modal.style.display = "none";
             }
