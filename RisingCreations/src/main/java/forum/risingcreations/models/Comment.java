@@ -16,6 +16,10 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
+
     public Post getPost() {
 		return post;
 	}
@@ -38,5 +42,13 @@ public class Comment {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 }

@@ -24,12 +24,10 @@ public class ForumPostController {
     PostService postService;
 
     @GetMapping("/post/{postid}")
-    public String getForumPost(Model model) {
-        model.addAttribute("title", title);
-        model.addAttribute("description", description);
-        model.addAttribute("comment", comment);
-        model.addAttribute("commentname", commentname);
-        model.addAttribute("commentdate", commentdate);
+    public String getForumPost(@PathVariable("postid") Long postid, Model model) {
+        Post p = postService.getById(postid);
+
+        model.addAttribute("post", p);
 
         return "forumpost";
     }
