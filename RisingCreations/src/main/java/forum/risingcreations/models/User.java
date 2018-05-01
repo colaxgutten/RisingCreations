@@ -9,12 +9,23 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
+	@Column(unique = true)
 	private String username;
 	private String password;
 	
 	@OneToOne(fetch = FetchType.LAZY)
     @MapsId
 	private Profile profile;
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	private String role;
 
 	public Long getId() {
 		return id;
