@@ -9,11 +9,13 @@ public class ForumPostController {
 
     private final String title = "Lorem ipsum dolor sit amet";
     private final String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur dui in dolor porttitor, quis tincidunt arcu semper. Integer hendrerit tempor nisi, in pulvinar nibh. Cras malesuada gravida blandit. Nullam mattis nibh dui, sed placerat nulla luctus ac. Curabitur accumsan, ante nec gravida volutpat, turpis ipsum ultricies tortor, quis ultrices.";
+    public static final String comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis pellentesque augue. Praesent vel purus nec tortor lacinia gravida vel sit amet mi. Nulla ornare leo sem, quis cursus orci.";
 
     @GetMapping("/post/{postid}")
     public String getForumPost(Model model) {
         model.addAttribute("title", title);
         model.addAttribute("description", description);
+        model.addAttribute("comment", comment);
 
         return "forumpost";
     }
