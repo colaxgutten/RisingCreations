@@ -31,7 +31,10 @@ public class IndexController {
 	
 	@GetMapping("/")
 	public String getIndex(@RequestParam(name="name", required=false, defaultValue="World")String name, Model model){
+		List<Long> postList = postService.getAllPostsAsIdList();
+
 		model.addAttribute("name", name);
+		model.addAttribute("posts", postList);
 
 		return "index";
 	}
