@@ -5,6 +5,9 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Create a post below</h1>
             <form id="createPostForm" name="createPostForm" action="/post" method="POST" enctype="multipart/form-data">
+            <#if _csrf??>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>  
+                </#if>
                 <div class="form-group">
                     <label for="title">Title:</label>
                     <input name="title" type="text" class="form-control" id="title" required>

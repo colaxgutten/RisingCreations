@@ -5,7 +5,9 @@
         <div class="col-sm-6 offset-sm-3">
             <h1>Please log in</h1>
             <form id="loginForm" name="loginForm" action="/login" method="POST">
-                <div class="form-group">
+				<#if _csrf??>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>  
+                </#if>                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input name="username" type="text" class="form-control" id="username" required>
                 </div>
