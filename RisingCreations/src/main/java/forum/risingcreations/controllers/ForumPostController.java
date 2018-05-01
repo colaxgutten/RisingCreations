@@ -14,12 +14,6 @@ import java.io.IOException;
 @Controller
 public class ForumPostController {
 
-    private final String title = "Lorem ipsum dolor sit amet";
-    private final String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur dui in dolor porttitor, quis tincidunt arcu semper. Integer hendrerit tempor nisi, in pulvinar nibh. Cras malesuada gravida blandit. Nullam mattis nibh dui, sed placerat nulla luctus ac. Curabitur accumsan, ante nec gravida volutpat, turpis ipsum ultricies tortor, quis ultrices.";
-    private final String comment = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse quis pellentesque augue. Praesent vel purus nec tortor lacinia gravida vel sit amet mi. Nulla ornare leo sem, quis cursus orci.";
-    private final String commentname = "Kari Nordmann";
-    private final String commentdate = "March 10, 2018";
-
     @Autowired
     PostService postService;
 
