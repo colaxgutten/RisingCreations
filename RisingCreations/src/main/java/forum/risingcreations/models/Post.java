@@ -1,5 +1,7 @@
 package forum.risingcreations.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,8 @@ public class Post {
 
 	private String title;
 	private String description;
+
+	@JsonIgnore
 	private byte[] image;
 
 	public void addComment(Comment comment) {
