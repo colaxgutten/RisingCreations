@@ -35,8 +35,8 @@ public class ForumPostController {
 
     @GetMapping( value = "/post/{postid}/img", produces = MediaType.IMAGE_PNG_VALUE)
     public @ResponseBody
-    byte[] getForumPostImage(@PathVariable("standID") Long postid) {
+    byte[] getForumPostImage(@PathVariable("postid") Long postid) {
         Post p = postService.getById(postid);
-        return p.getImage();
+        return p != null ? p.getImage() : new byte[]{};
     }
 }
