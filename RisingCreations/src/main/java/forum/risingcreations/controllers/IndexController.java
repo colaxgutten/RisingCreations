@@ -32,17 +32,7 @@ public class IndexController {
 	@GetMapping("/")
 	public String getIndex(@RequestParam(name="name", required=false, defaultValue="World")String name, Model model){
 		model.addAttribute("name", name);
-//		userService.saveUser(new User(name,"pass"));
-//		List<User> users = userService.findByUsername(name);
-		Post post = new Post();
-        post.setTitle("Hei");
 
-        Comment comment = new Comment();
-        comment.setDescription("This is a description");
-
-        post.addComment(comment);
-
-        postService.save(post);
 		return "index";
 	}
 }
