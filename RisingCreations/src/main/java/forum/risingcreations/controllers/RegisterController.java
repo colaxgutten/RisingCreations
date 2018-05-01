@@ -30,10 +30,14 @@ public class RegisterController {
     public String getRegisterPage() {
     	Profile profile = new Profile();
     	profile.setName("Hei");
+
     	User user = new User("Daniel","Hei");
+
     	profile.setUser(user);
     	user.setProfile(profile);
+
     	userService.saveUser(user);
+
     	List<User> list = userService.findByUsername("Daniel");
     	for (User users : list) {
     		System.out.println(users.getProfile().getName());

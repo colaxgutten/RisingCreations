@@ -1,20 +1,16 @@
 package forum.risingcreations.models;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "profile")
 public class Profile {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     
-    @OneToOne(mappedBy="profile", cascade=CascadeType.ALL)
+    @OneToOne(mappedBy="profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User user;
 
     public User getUser() {
