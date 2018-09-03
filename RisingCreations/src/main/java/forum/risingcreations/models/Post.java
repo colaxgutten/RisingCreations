@@ -18,6 +18,7 @@ public class Post {
 	@JoinColumn(name = "profile")
 	private Profile profile;
 	
+	
 	@OneToMany(mappedBy="post", cascade=CascadeType.ALL)
 	List<Comment> comments = new ArrayList<Comment>();
 

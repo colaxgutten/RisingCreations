@@ -12,6 +12,9 @@
                 <div style="padding-top: 10px; float: left; clear: both; width: 100%;">
                     ${post.description}
                 </div>
+                <div style="padding-top: 10px; float: left; clear: both; width: 100%;">
+                    ${post.profile.name}
+                </div>
                 <div style="display: inline-block; padding-bottom: 10px; width: 100%;">
                     <hr/>
                     <div class="comment-form">

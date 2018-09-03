@@ -45,11 +45,12 @@ public class RegisterController {
     			return "/register";
     		User authUser = new User(loginForm.getUsername(),passwordEncoder.encode(loginForm.getPassword()));
     		Profile profile = new Profile();
-    		profile.setName("Username");
+    		profile.setName(authUser.getUsername());
     		profile.setDescription("No description yet.");
     		authUser.setProfile(profile);
     		authUser.setRole("default");
     		profile.setUser(authUser);
+    		profileService.saveProfile(profile);
     		userService.saveUser(authUser);
     		return "redirect:/login";
     	}

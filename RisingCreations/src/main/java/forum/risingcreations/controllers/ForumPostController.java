@@ -1,7 +1,10 @@
 package forum.risingcreations.controllers;
 
 import forum.risingcreations.models.Post;
+import forum.risingcreations.models.Profile;
 import forum.risingcreations.services.PostService;
+import forum.risingcreations.services.ProfileService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -10,12 +13,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class ForumPostController {
 
     @Autowired
     PostService postService;
+    @Autowired
+    ProfileService profileService;
 
     @GetMapping("/post/{postid}")
     public String getForumPost(@PathVariable("postid") Long postid, Model model) {
@@ -41,7 +48,8 @@ public class ForumPostController {
     @PostMapping("/post")
     public @ResponseBody String postCreateForumPost(@RequestParam("title") String title,
                                                     @RequestParam("desc") String description,
-                                                    @RequestParam("img") MultipartFile imageFile) {
+                                                    @RequestParam("img") MultipartFile imageFile,
+                                                    Principal principal) {
         if(!title.isEmpty()) {
             if(!description.isEmpty()) {
                 if(!imageFile.isEmpty()) {
@@ -58,6 +66,11 @@ public class ForumPostController {
                         post.setImage(bytes);
                         post.setTitle(title);
                         post.setDescription(description);
+                        String name =principal.getName();
+                        Profile profile = profileService.findProfileByName(name);
+                        System.out.println("Profile: "+profile);
+                        post.setProfile(profile);
+                        	
 
                         postService.save(post);
                     }

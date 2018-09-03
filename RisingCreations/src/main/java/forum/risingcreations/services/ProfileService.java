@@ -17,7 +17,7 @@ public class ProfileService {
         return profileRepository.findById(id).orElse(null);
     }
 
-    public List<Profile> findProfileByName(String name) {
+    public Profile findProfileByName(String name) {
     	
         return profileRepository.findProfileByName(name);
     }
