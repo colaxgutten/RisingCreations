@@ -18,11 +18,14 @@
                 <div style="display: inline-block; padding-bottom: 10px; width: 100%;">
                     <hr/>
                     <div class="comment-form">
-                        <form id="commentForm" name="commentForm" action="/comment" method="POST">
+                        <form id="commentForm" name="commentForm" action="${post.id}/comment" method="POST">
+                            <#if _csrf??>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </#if>
                             <div class="form-group">
                                 <label for="comment">Comment:</label>
                                 <textarea class="form-control" rows="5" id="comment" required></textarea>
-                            </div>
+                            </div>description
                             <button type="submit" class="btn btn-primary float-right">Post</button>
                         </form>
                     </div>
@@ -38,7 +41,8 @@
                         <div class="media-body">
                             <h5 class="media-heading">
                                 ${comment.profile.id}
-                                <small><i>Posted on <#if comment.date??>${comment.date}<#else>UNKNOWN DATE</#if></i></small>
+                                <small><i>Posted on <#if comment.date??>${comment.date}<#else>UNKNOWN DATE</#if></i>
+                                </small>
                             </h5>
                             <p>${comment.description}</p>
                         </div>

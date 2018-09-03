@@ -1,5 +1,6 @@
 package forum.risingcreations.controllers;
 
+import forum.risingcreations.models.Comment;
 import forum.risingcreations.models.Post;
 import forum.risingcreations.models.Profile;
 import forum.risingcreations.services.PostService;
@@ -33,7 +34,7 @@ public class ForumPostController {
         return "forumpost";
     }
 
-    @GetMapping( value = "/post/{postid}/img", produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(value = "/post/{postid}/img", produces = MediaType.IMAGE_PNG_VALUE)
     public @ResponseBody
     byte[] getForumPostImage(@PathVariable("postid") Long postid) {
         Post p = postService.getById(postid);
@@ -45,14 +46,29 @@ public class ForumPostController {
         return "createpost";
     }
 
+    @PostMapping("/post/{postid}/comment")
+    public String postComment(@PathVariable("postid") Long postid, @RequestParam("description") String description, Principal principal) {
+        Profile profile = profileService.findProfileByName(principal.getName());
+
+        Post post = postService.getById(postid);
+
+        Comment comment = new Comment();
+        comment.setProfile(profile);
+        comment.setPost(post);
+        comment.setDescription(description);
+
+        return "success";
+    }
+
     @PostMapping("/post")
-    public @ResponseBody String postCreateForumPost(@RequestParam("title") String title,
-                                                    @RequestParam("desc") String description,
-                                                    @RequestParam("img") MultipartFile imageFile,
-                                                    Principal principal) {
-        if(!title.isEmpty()) {
-            if(!description.isEmpty()) {
-                if(!imageFile.isEmpty()) {
+    public @ResponseBody
+    String postCreateForumPost(@RequestParam("title") String title,
+                               @RequestParam("desc") String description,
+                               @RequestParam("img") MultipartFile imageFile,
+                               Principal principal) {
+        if (!title.isEmpty()) {
+            if (!description.isEmpty()) {
+                if (!imageFile.isEmpty()) {
                     byte[] bytes = null;
 
                     try {
@@ -61,16 +77,16 @@ public class ForumPostController {
                         e.printStackTrace();
                     }
 
-                    if(bytes != null) {
+                    if (bytes != null) {
                         Post post = new Post();
                         post.setImage(bytes);
                         post.setTitle(title);
                         post.setDescription(description);
-                        String name =principal.getName();
+                        String name = principal.getName();
                         Profile profile = profileService.findProfileByName(name);
-                        System.out.println("Profile: "+profile);
+                        System.out.println("Profile: " + profile);
                         post.setProfile(profile);
-                        	
+
 
                         postService.save(post);
                     }
