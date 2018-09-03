@@ -18,7 +18,7 @@
                 <div style="display: inline-block; padding-bottom: 10px; width: 100%;">
                     <hr/>
                     <div class="comment-form">
-                        <form id="commentForm" name="commentForm" action="/post/${post.id}/comment" method="POST">
+                        <form id="commentForm" name="commentForm" action="/post/${post.id}" method="POST">
                             <#if _csrf??>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             </#if>
