@@ -15,7 +15,7 @@
     <script defer src="/webjars/jquery/2.1.4/jquery.min.js"></script>
     <script defer src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet"
-          href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css"/>
+          href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" async/>
 
 </head>
 <body>
