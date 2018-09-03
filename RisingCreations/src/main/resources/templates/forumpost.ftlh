@@ -24,7 +24,7 @@
                             </#if>
                             <div class="form-group">
                                 <label for="comment">Comment:</label>
-                                <textarea class="form-control" rows="5" id="comment" required></textarea>
+                                <textarea name="description" class="form-control" rows="5" id="comment" required></textarea>
                             </div>description
                             <button type="submit" class="btn btn-primary float-right">Post</button>
                         </form>
