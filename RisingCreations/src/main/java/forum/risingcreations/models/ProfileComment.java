@@ -3,7 +3,7 @@ package forum.risingcreations.models;
 import javax.persistence.*;
 
 @Entity
-public class Comment {
+public class ProfileComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,24 +12,16 @@ public class Comment {
     @Column(nullable = false)
     private String description;
 
-    @ManyToOne(targetEntity = Post.class)
-    @JoinColumn(name = "post_id")
-    private Post post;
-
     @ManyToOne
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
-    public Post getPost() {
-        return post;
-    }
+    @ManyToOne
+    @JoinColumn(name = "commenter_id")
+    private Profile commenter;
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
     }
 
     public Long getId() {
@@ -44,7 +36,19 @@ public class Comment {
         this.description = description;
     }
 
-    public Profile getProfile() { return profile; }
+    public Profile getProfile() {
+        return profile;
+    }
 
-    public void setProfile(Profile profile) { this.profile = profile; }
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public Profile getCommenter() {
+        return commenter;
+    }
+
+    public void setCommenter(Profile commenter) {
+        this.commenter = commenter;
+    }
 }
