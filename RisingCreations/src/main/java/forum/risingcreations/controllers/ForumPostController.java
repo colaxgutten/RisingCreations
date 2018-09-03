@@ -3,6 +3,7 @@ package forum.risingcreations.controllers;
 import forum.risingcreations.models.Comment;
 import forum.risingcreations.models.Post;
 import forum.risingcreations.models.Profile;
+import forum.risingcreations.services.CommentService;
 import forum.risingcreations.services.PostService;
 import forum.risingcreations.services.ProfileService;
 
@@ -24,6 +25,8 @@ public class ForumPostController {
     PostService postService;
     @Autowired
     ProfileService profileService;
+    @Autowired
+    CommentService commentService;
 
     @GetMapping("/post/{postid}")
     public String getForumPost(@PathVariable("postid") Long postid, Model model) {
@@ -46,18 +49,18 @@ public class ForumPostController {
         return "createpost";
     }
 
-    @PostMapping("/post/{postid}/comment")
+    @PostMapping("/post/{postid}")
     public String postComment(@PathVariable("postid") Long postid, @RequestParam("description") String description, Principal principal) {
         Profile profile = profileService.findProfileByName(principal.getName());
-
         Post post = postService.getById(postid);
 
         Comment comment = new Comment();
         comment.setProfile(profile);
         comment.setPost(post);
         comment.setDescription(description);
+        commentService.save(comment);
 
-        return "success";
+        return "redirect:/post/"+postid;
     }
 
     @PostMapping("/post")
@@ -86,6 +89,7 @@ public class ForumPostController {
                         Profile profile = profileService.findProfileByName(name);
                         System.out.println("Profile: " + profile);
                         post.setProfile(profile);
+                        System.out.println("Name: "+name);
 
 
                         postService.save(post);

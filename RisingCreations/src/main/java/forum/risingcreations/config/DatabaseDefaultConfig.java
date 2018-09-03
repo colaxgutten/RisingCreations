@@ -29,7 +29,7 @@ public class DatabaseDefaultConfig implements ApplicationRunner {
         // Create a default user with username admin and password admin
         User authUser = new User("admin", new BCryptPasswordEncoder().encode("admin"));
         Profile profile = new Profile();
-        profile.setName("Username");
+        profile.setName(authUser.getUsername());
         profile.setDescription("No description yet.");
         authUser.setProfile(profile);
         authUser.setRole("default");

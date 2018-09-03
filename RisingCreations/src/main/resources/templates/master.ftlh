@@ -19,6 +19,12 @@
 
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+  <ul class="nav navbar-nav">
+    <li><a href="/">Home</a></li>
+    <li><a href="/profile">Profile</a></li>
+  </ul>
+</nav>
 	 		<#nested/>
 
 </body>
