@@ -41,10 +41,8 @@ public class RegisterController {
     public String postRegisterData(@ModelAttribute LoginForm loginForm) {
     	if(loginForm.getUsername() != null && !loginForm.getUsername().isEmpty() && loginForm.getPassword() != null && !loginForm.getPassword().isEmpty()) {
     		User user = userService.findByUsername(loginForm.getUsername());
-    		System.out.println(user);
     		if (user!=null)
     			return "/register";
-    		System.out.println("user doesnt exist");
     		User authUser = new User(loginForm.getUsername(),passwordEncoder.encode(loginForm.getPassword()));
     		Profile profile = new Profile();
     		profile.setName("Username");

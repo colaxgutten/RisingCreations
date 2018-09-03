@@ -25,8 +25,8 @@ public class AuthUserDetailService implements UserDetailsService{
 			throw new UsernameNotFoundException(username);
 		User user = userService.findByUsername(username);
 		System.out.println("ROLE:::::  !!");
-		System.out.println(user.getRole());
 		user.setRole("default");
+		System.out.println(user.getRole());
 		return new UserPrincipal(user);
 	}
 
