@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-12" style="display: inline-block; padding-bottom: 10px;">
             <hr/>
-            <@cf.commentform></@cf.commentform>
+            <@cf.commentform><form id="commentForm" name="commentForm" action="/profile/${profileid}" method="POST"></@cf.commentform>
             <@cs.commentsection></@cs.commentsection>
         </div>
     </div>

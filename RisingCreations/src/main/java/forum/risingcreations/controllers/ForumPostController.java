@@ -36,6 +36,7 @@ public class ForumPostController {
     public String getForumPost(@PathVariable("postid") Long postid, Model model) {
         Post p = postService.getById(postid);
 
+        model.addAttribute("comments", p.getComments());
         model.addAttribute("post", p);
 
         return "forumpost";
