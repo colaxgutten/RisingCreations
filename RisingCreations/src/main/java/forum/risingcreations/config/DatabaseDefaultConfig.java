@@ -1,11 +1,9 @@
 package forum.risingcreations.config;
 
-import forum.risingcreations.models.Comment;
-import forum.risingcreations.models.Post;
-import forum.risingcreations.models.Profile;
-import forum.risingcreations.models.User;
+import forum.risingcreations.models.*;
 import forum.risingcreations.services.CommentService;
 import forum.risingcreations.services.PostService;
+import forum.risingcreations.services.ProfileService;
 import forum.risingcreations.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -27,6 +25,9 @@ public class DatabaseDefaultConfig implements ApplicationRunner {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private ProfileService profileService;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
@@ -34,12 +35,19 @@ public class DatabaseDefaultConfig implements ApplicationRunner {
         User authUser = new User("admin", new BCryptPasswordEncoder().encode("admin"));
         Profile profile = new Profile();
         profile.setName(authUser.getUsername());
-        profile.setDescription("No description yet.");
+        profile.setDescription("Integer lobortis neque dui, a porttitor neque convallis id. Nulla interdum diam eu lorem iaculis, eget gravida erat hendrerit. Aliquam bibendum, lectus eu volutpat ultricies, mi sem lobortis nulla, sit amet cursus metus erat non tortor. Duis at cras amet.");
         profile.setImage(Base64.getDecoder().decode(getPicture().getBytes()));
         authUser.setProfile(profile);
         authUser.setRole("default");
         profile.setUser(authUser);
         userService.saveUser(authUser);
+
+        ProfileComment profileComment = new ProfileComment();
+        profileComment.setCommenter(profile);
+        profileComment.setDescription("Pellentesque elementum arcu et blandit fringilla. Aliquam fermentum vel justo vel condimentum. Curabitur feugiat tellus dapibus dapibus dignissim. Nam sit amet lectus egestas lorem placerat malesuada. Pellentesque et rutrum mi, sit amet eleifend ex metus.");
+        profile.addComment(profileComment);
+
+        profileService.saveProfile(profile);
 
         // Create a default post
         Post post = new Post();
