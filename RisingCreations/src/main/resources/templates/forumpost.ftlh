@@ -4,9 +4,9 @@
     <div class="row">
         <div class="col-sm-8 offset-sm-2">
             <#if post??>
-                <h3>
+                <h2>
                     ${post.title}
-                </h3>
+                </h2>
                 <div style="float: left; clear: both; width: 100%;">
                     <small>
                         <i>Posted by <a href="/profile/${post.profile.id}">${post.profile.name}</a>
