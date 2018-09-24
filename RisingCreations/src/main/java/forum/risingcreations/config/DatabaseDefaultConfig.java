@@ -11,7 +11,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.io.*;
 import java.util.Base64;
 
 @Component
@@ -31,6 +30,7 @@ public class DatabaseDefaultConfig implements ApplicationRunner {
         Profile profile = new Profile();
         profile.setName(authUser.getUsername());
         profile.setDescription("No description yet.");
+        profile.setImage(Base64.getDecoder().decode(getPicture().getBytes()));
         authUser.setProfile(profile);
         authUser.setRole("default");
         profile.setUser(authUser);

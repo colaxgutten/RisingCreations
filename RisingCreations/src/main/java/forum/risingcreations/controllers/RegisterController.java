@@ -20,42 +20,43 @@ import forum.risingcreations.services.UserService;
 
 @Controller
 public class RegisterController {
-	@Autowired
-	private PostService postService;
-	
-	@Autowired
-	private ProfileService profileService;
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PostService postService;
+
+    @Autowired
+    private ProfileService profileService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/register")
-    public String getRegisterPage() {  	
+    public String getRegisterPage() {
         return "register";
     }
 
     @PostMapping("/register")
     public String postRegisterData(@ModelAttribute LoginForm loginForm) {
-    	if(loginForm.getUsername() != null && !loginForm.getUsername().isEmpty() && loginForm.getPassword() != null && !loginForm.getPassword().isEmpty()) {
-    		User user = userService.findByUsername(loginForm.getUsername());
-    		if (user!=null)
-    			return "/register";
-    		User authUser = new User(loginForm.getUsername(),passwordEncoder.encode(loginForm.getPassword()));
-    		Profile profile = new Profile();
-    		profile.setName(authUser.getUsername());
-    		profile.setDescription("No description yet.");
-    		authUser.setProfile(profile);
-    		authUser.setRole("default");
-    		profile.setUser(authUser);
-    		profileService.saveProfile(profile);
-    		userService.saveUser(authUser);
-    		return "redirect:/login";
-    	}
-		System.out.println("whyyyy?");
+        if (loginForm.getUsername() != null && !loginForm.getUsername().isEmpty() && loginForm.getPassword() != null && !loginForm.getPassword().isEmpty()) {
+            User user = userService.findByUsername(loginForm.getUsername());
+            if (user != null)
+                return "/register";
+            User authUser = new User(loginForm.getUsername(), passwordEncoder.encode(loginForm.getPassword()));
+            Profile profile = new Profile();
+            profile.setName(authUser.getUsername());
+            profile.setDescription("No description yet.");
+    		profile.setImage(new byte[200 * 200]);
+            authUser.setProfile(profile);
+            authUser.setRole("default");
+            profile.setUser(authUser);
+            profileService.saveProfile(profile);
+            userService.saveUser(authUser);
+            return "redirect:/login";
+        }
+        System.out.println("whyyyy?");
 
-    		return "/register";
+        return "/register";
     }
 }
