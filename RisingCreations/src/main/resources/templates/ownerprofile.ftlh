@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-12">
             <div class="profile">
-                <img src="/profile/${profileid}/img" class="rounded float-left img-thumbnail profileimg"
+                <img src="/profile/${profileid}/img" onclick="editImg()" class="rounded float-left img-thumbnail profileimg"
                      alt="Profile Image"
                      style="width: 200px; height: 200px; margin-right: 20px;">
                 <form id="changeProfilePictureForm" name="changeProfilePictureForm" action="/profile/changeimg"
@@ -15,15 +15,17 @@
                			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                      </#if>
                     <p>Change image</p>
-                    <input type="file" name="img" id="get_file" onchange="form.submit()">
+                    <input type="file" name="img" id="get_file" style="display: none" onchange="form.submit()">
                 </form>
-                <h3>${profilename}</h3>
+                <div onclick="editName()">
+                	<h3>${profilename}</h3>
+                </div>
                 <form id="changeProfilename" name="changeProfilename" action="/profile/changename" method="POST">
                      <#if _csrf??>
                			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                      </#if>
                     <p>Change name</p>
-                    <input type="string" name="name" id="get_file" onchange="form.submit()">
+                    <input type="string" name="name" id="get_name" style="display:none" onchange="form.submit()">
                 </form>
                 <hr/>
             </div>
@@ -40,6 +42,14 @@
         </div>
     </div>
 </div>
+<script>
+function editName() {
+	document.getElementById("get_name").style.display="block";
+}
+function editImg() {
+	document.getElementById("get_file").style.display="block";
+}
+</script>
 <style>
     .profile {
         margin-top: 10px;
