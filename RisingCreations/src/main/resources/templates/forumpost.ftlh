@@ -55,10 +55,6 @@
         margin-bottom: 10px;
     }
 
-    .commentimg {
-        margin-right: 7px;
-    }
-
     .img-link:hover .profileimg {
         opacity: 0.7;
     }

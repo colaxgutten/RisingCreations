@@ -4,8 +4,8 @@
             <div class="media-left">
                 <a href="/profile/${comment.profile.id}">
                     <img src="/profile/${comment.profile.id}/img"
-                         class="rounded float-left img-thumbnail commentimg"
-                         alt="No Image" style="width: 100px; height: 100px;">
+                         class="rounded float-left img-thumbnail"
+                         alt="No Image" style="width: 100px; height: 100px; margin-right: 7px;">
                 </a>
             </div>
             <div class="media-body">
