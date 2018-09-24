@@ -47,7 +47,7 @@
                         </div>
                         <div class="media-body">
                             <h5 class="media-heading">
-                                ${comment.profile.id}
+                                ${comment.profile.name}
                                 <small><i>Posted on <#if comment.date??>${comment.getFormattedDate()}<#else>UNKNOWN
                                     DATE</#if></i>
                                 </small>
