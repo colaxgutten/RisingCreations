@@ -1,6 +1,9 @@
 package forum.risingcreations.models;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 @Entity
 public class Comment {
@@ -11,6 +14,9 @@ public class Comment {
 
     @Column(nullable = false)
     private String description;
+
+    @Column(nullable = false)
+    private LocalDateTime date = LocalDateTime.now();
 
     @ManyToOne(targetEntity = Post.class)
     @JoinColumn(name = "post_id")
@@ -47,4 +53,12 @@ public class Comment {
     public Profile getProfile() { return profile; }
 
     public void setProfile(Profile profile) { this.profile = profile; }
+
+    public LocalDateTime getDate() { return this.date; }
+
+    public void setDate(LocalDateTime date) { this.date = date; }
+
+    public String getFormattedDate() {
+        return this.date.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.MEDIUM));
+    }
 }

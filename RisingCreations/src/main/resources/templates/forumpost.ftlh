@@ -24,7 +24,8 @@
                             </#if>
                             <div class="form-group">
                                 <label for="comment">Comment:</label>
-                                <textarea name="description" class="form-control" rows="5" id="comment" required></textarea>
+                                <textarea name="description" class="form-control" rows="5" id="comment"
+                                          required></textarea>
                             </div>description
                             <button type="submit" class="btn btn-primary float-right">Post</button>
                         </form>
@@ -41,7 +42,7 @@
                         <div class="media-body">
                             <h5 class="media-heading">
                                 ${comment.profile.id}
-                                <small><i>Posted on <#if comment.date??>${comment.date}<#else>UNKNOWN DATE</#if></i>
+                                <small><i>Posted on <#if comment.date??>${comment.getFormattedDate()}<#else>UNKNOWN DATE</#if></i>
                                 </small>
                             </h5>
                             <p>${comment.description}</p>

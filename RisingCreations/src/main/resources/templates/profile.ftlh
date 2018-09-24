@@ -41,7 +41,7 @@
                         <div class="media-body">
                             <h5 class="media-heading">
                                 ${comment.commenter.id}
-                                <small><i>Posted on <#if comment.date??>${comment.date}<#else>UNKNOWN DATE</#if></i>
+                                <small><i>Posted on <#if comment.date??>${comment.getFormattedDate()}<#else>UNKNOWN DATE</#if></i>
                                 </small>
                             </h5>
                             <p>${comment.description}</p>
