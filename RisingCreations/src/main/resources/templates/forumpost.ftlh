@@ -7,8 +7,11 @@
                 <h3>
                     ${post.title}
                 </h3>
-                <img src="/post/${post.id}/img" class="rounded float-left img-thumbnail profileimg" alt="${post.title}"
-                     style="clear: both;">
+                <a href="/post/${post.id}/img" target="_blank" class="img-link">
+                    <img src="/post/${post.id}/img" class="rounded float-left img-thumbnail profileimg"
+                         alt="${post.title}"
+                         style="clear: both;">
+                </a>
                 <div style="padding-top: 10px; float: left; clear: both; width: 100%;">
                     ${post.description}
                 </div>
@@ -34,14 +37,16 @@
                     <div class="media">
                         <div class="media-left">
                             <a href="/profile/${comment.profile.id}">
-                                <img src="/profile/${comment.profile.id}/img" class="rounded float-left img-thumbnail commentimg"
+                                <img src="/profile/${comment.profile.id}/img"
+                                     class="rounded float-left img-thumbnail commentimg"
                                      alt="No Image" style="width: 100px; height: 100px;">
                             </a>
                         </div>
                         <div class="media-body">
                             <h5 class="media-heading">
                                 ${comment.profile.id}
-                                <small><i>Posted on <#if comment.date??>${comment.getFormattedDate()}<#else>UNKNOWN DATE</#if></i>
+                                <small><i>Posted on <#if comment.date??>${comment.getFormattedDate()}<#else>UNKNOWN
+                                    DATE</#if></i>
                                 </small>
                             </h5>
                             <p>${comment.description}</p>
@@ -78,6 +83,18 @@
 
     .commentimg {
         margin-right: 7px;
+    }
+
+    .img-link:hover .profileimg {
+        opacity: 0.7;
+    }
+
+    .profileimg {
+        opacity: 1;
+        display: block;
+        height: auto;
+        transition: .5s ease;
+        backface-visibility: hidden;
     }
 </style>
 </@m.master>
