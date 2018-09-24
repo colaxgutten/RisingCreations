@@ -1,8 +1,10 @@
 package forum.risingcreations.config;
 
+import forum.risingcreations.models.Comment;
 import forum.risingcreations.models.Post;
 import forum.risingcreations.models.Profile;
 import forum.risingcreations.models.User;
+import forum.risingcreations.services.CommentService;
 import forum.risingcreations.services.PostService;
 import forum.risingcreations.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,10 @@ public class DatabaseDefaultConfig implements ApplicationRunner {
     private UserService userService;
 
     @Autowired
-    PostService postService;
+    private PostService postService;
+
+    @Autowired
+    private CommentService commentService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -39,11 +44,17 @@ public class DatabaseDefaultConfig implements ApplicationRunner {
         // Create a default post
         Post post = new Post();
         post.setImage(Base64.getDecoder().decode(getPicture().getBytes()));
-        post.setTitle("post title");
-        post.setDescription("post description");
+        post.setTitle("My first post!");
+        post.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis lorem eget aliquam dapibus. Aenean porta commodo fermentum. Nullam eu quam et nunc ultrices posuere. Aenean sit amet aliquam diam. Etiam commodo purus in consectetur commodo volutpat.");
         post.setProfile(profile);
 
         postService.save(post);
+
+        Comment comment = new Comment();
+        comment.setProfile(profile);
+        comment.setPost(post);
+        comment.setDescription("Vivamus faucibus massa in tellus facilisis, sed convallis tortor pharetra. Integer vitae risus dapibus libero blandit auctor ac eget orci. Suspendisse libero turpis, pellentesque quis quam id, ornare gravida ipsum. Aenean non risus in leo vulputate metus.");
+        commentService.save(comment);
     }
 
     private String getPicture() {
