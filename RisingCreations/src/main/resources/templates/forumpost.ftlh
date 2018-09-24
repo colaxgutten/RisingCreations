@@ -23,7 +23,7 @@
                 <div style="padding-top: 10px; float: left; clear: both; width: 100%;">
                     ${post.description}
                 </div>
-                <div class="col-12" style="display: inline-block; padding-bottom: 10px;">
+                <div style="display: inline-block; padding-bottom: 10px;">
                     <hr/>
                     <@cf.commentform><form id="commentForm" name="commentForm" action="/post/${post.id}" method="POST"></@cf.commentform>
                     <@cs.commentsection></@cs.commentsection>
