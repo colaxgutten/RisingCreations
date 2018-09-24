@@ -7,6 +7,12 @@
                 <h3>
                     ${post.title}
                 </h3>
+                <div style="float: left; clear: both; width: 100%;">
+                    <small>
+                        <i>Posted by <a href="/profile/${post.profile.id}">${post.profile.name}</a>
+                            on ${post.getFormattedDate()}</i>
+                    </small>
+                </div>
                 <a href="/post/${post.id}/img" target="_blank" class="img-link">
                     <img src="/post/${post.id}/img" class="rounded float-left img-thumbnail profileimg"
                          alt="${post.title}"
@@ -14,9 +20,6 @@
                 </a>
                 <div style="padding-top: 10px; float: left; clear: both; width: 100%;">
                     ${post.description}
-                </div>
-                <div style="padding-top: 10px; float: left; clear: both; width: 100%;">
-                    ${post.profile.name}
                 </div>
                 <div style="display: inline-block; padding-bottom: 10px; width: 100%;">
                     <hr/>
