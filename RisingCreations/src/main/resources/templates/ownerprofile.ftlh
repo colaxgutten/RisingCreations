@@ -14,6 +14,13 @@
                      	<input type="file" name="img" id="get_file" onchange="form.submit()">
                      </form>
                 <h3>${profilename}</h3>
+                <form id="changeProfilename" name="changeProfilename" action="/profile/changename" method="POST">
+                     <#if _csrf??>
+               			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>  
+                	</#if>
+                		<p>Change name</p>
+                     	<input type="string" name="name" id="get_file" onchange="form.submit()">
+                     </form>
                 <hr/>
             </div>
             <div class="profiledescription">

@@ -4,7 +4,9 @@ import forum.risingcreations.models.Comment;
 import forum.risingcreations.models.Post;
 import forum.risingcreations.models.Profile;
 import forum.risingcreations.models.ProfileComment;
+import forum.risingcreations.models.User;
 import forum.risingcreations.services.ProfileService;
+import forum.risingcreations.services.UserService;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -23,6 +25,9 @@ public class ProfileController {
 
 	@Autowired
 	ProfileService profileService;
+	
+	@Autowired
+	UserService userService;
 
 
     @GetMapping(value = "/profile/{profileid}/img", produces = MediaType.IMAGE_PNG_VALUE)
@@ -82,9 +87,9 @@ public class ProfileController {
 			if (principal!=null) {
 			String name = principal.getName();
 			if (name!=null) {
-				Profile p = profileService.findProfileByName(name);
+				User u = userService.findByUsername(name);
+				Profile p = u.getProfile();
 				if (p!=null) {
-					System.out.println("BRAAAAAA");
 					Long profileid = p.getId();
 			        model.addAttribute("profileid", profileid);		       
 			        model.addAttribute("profilename", p.getName());
@@ -108,11 +113,21 @@ public class ProfileController {
 				System.out.println("Can't fetch data from selected image.");
 			}
 			if (bytes!=null) {
-				Profile p = profileService.findProfileByName(principal.getName());
+				User u = userService.findByUsername(principal.getName());
+				Profile p = u.getProfile();
 				p.setImage(bytes);
 				profileService.saveProfile(p);
 			}
 		}
+		return "redirect:/profile";
+	}
+	
+	@PostMapping("/profile/changename")
+	public String changeName(@RequestParam("name")String name, Principal principal) {
+		User u = userService.findByUsername(principal.getName());
+		Profile p = u.getProfile();
+		p.setName(name);
+		profileService.saveProfile(p);
 		return "redirect:/profile";
 	}
 
@@ -121,7 +136,8 @@ public class ProfileController {
         if(principal == null)
             return "redirect:/login";
 
-        Profile commenter = profileService.findProfileByName(principal.getName());
+        User u = userService.findByUsername(principal.getName());
+        Profile commenter = u.getProfile();
 
         Profile profile = profileService.findProfileById(profileid);
 
