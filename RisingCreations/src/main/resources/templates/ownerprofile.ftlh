@@ -3,9 +3,6 @@
 <div class="container">
     <div class="row">	
         <div class="col-12">
-        <a class="settings" href="/profile/edit">
-          <i class="fas fa-cog"></i>
-        </a></p>
             <div class="profile">
                 <img src="/profile/${profileid}/img" class="rounded float-left img-thumbnail profileimg" alt="Profile Image"
                      style="width: 200px; height: 200px; margin-right: 20px;">
