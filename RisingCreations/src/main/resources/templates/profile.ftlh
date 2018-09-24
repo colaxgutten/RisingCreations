@@ -1,7 +1,7 @@
 <#import "master.ftlh" as m/>
 <@m.master>
 <div class="container">
-    <div class="row">
+    <div class="row">	
         <div class="col-12">
             <div class="profile">
                 <img src="/profile/${profileid}/img" class="rounded float-left img-thumbnail profileimg" alt="Profile Image"
@@ -54,6 +54,10 @@
 <style>
     .profile {
         margin-top: 10px;
+    }
+    
+    .settings {
+    	float: right;
     }
 
     .profiledescription {

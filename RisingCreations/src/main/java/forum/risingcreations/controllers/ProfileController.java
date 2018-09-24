@@ -52,18 +52,47 @@ public class ProfileController {
 
 		return "profile";
 	}
+    
+    @GetMapping("/ownerprofile/{profileid}")
+    public String getOwnProfilePage(@PathVariable Long profileid, Model model) {
+        Profile profile = null;
+
+
+        if (profileid != null) {
+            profile = profileService.findProfileById(profileid);
+        }
+
+
+        model.addAttribute("profileid", profileid);
+
+
+        if (profile != null) {
+            model.addAttribute("profilename", profile.getName());
+            model.addAttribute("profiledesc", profile.getDescription());
+            model.addAttribute("comments", profile.getComments());
+        }
+
+		return "onwerprofile";
+	}
 
 	@GetMapping("/profile")
-	public String getProfileOrLoginPage(Principal principal) {
+	public String getProfileOrLoginPage(Principal principal, Model model) {
 			if (principal!=null) {
 			String name = principal.getName();
 			if (name!=null) {
 				Profile p = profileService.findProfileByName(name);
-				if (p!=null)
-					return "/profile/"+p.getId();
+				if (p!=null) {
+					System.out.println("BRAAAAAA");
+					Long profileid = p.getId();
+			        model.addAttribute("profileid", profileid);		       
+			        model.addAttribute("profilename", p.getName());
+			        model.addAttribute("profiledesc", p.getDescription());
+			        model.addAttribute("comments", p.getComments());
+					return "ownerprofile";
+				}
 			}
 			}
-		return "/login";
+		return "redirect:/login";
 	}
 
     @PostMapping("/profile/{profileid}")
