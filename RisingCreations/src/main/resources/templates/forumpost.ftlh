@@ -1,4 +1,6 @@
 <#import "master.ftlh" as m>
+<#import "commentsection.ftlh" as cs>
+<#import "commentform.ftlh" as cf>
 <@m.master>
 <div class="container">
     <div class="row">
@@ -21,41 +23,10 @@
                 <div style="padding-top: 10px; float: left; clear: both; width: 100%;">
                     ${post.description}
                 </div>
-                <div style="display: inline-block; padding-bottom: 10px; width: 100%;">
+                <div class="col-12" style="display: inline-block; padding-bottom: 10px;">
                     <hr/>
-                    <div class="comment-form">
-                        <form id="commentForm" name="commentForm" action="/post/${post.id}" method="POST">
-                            <#if _csrf??>
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            </#if>
-                            <div class="form-group">
-                                <label for="comment">Comment:</label>
-                                <textarea name="description" class="form-control" rows="5" id="comment"
-                                          required></textarea>
-                            </div>description
-                            <button type="submit" class="btn btn-primary float-right">Post</button>
-                        </form>
-                    </div>
-                    <#list post.comments as comment>
-                    <div class="media">
-                        <div class="media-left">
-                            <a href="/profile/${comment.profile.id}">
-                                <img src="/profile/${comment.profile.id}/img"
-                                     class="rounded float-left img-thumbnail commentimg"
-                                     alt="No Image" style="width: 100px; height: 100px;">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h5 class="media-heading">
-                                ${comment.profile.name}
-                                <small><i>Posted on <#if comment.date??>${comment.getFormattedDate()}<#else>UNKNOWN
-                                    DATE</#if></i>
-                                </small>
-                            </h5>
-                            <p>${comment.description}</p>
-                        </div>
-                    </div>
-                    </#list>
+                    <@cf.commentform></@cf.commentform>
+                    <@cs.commentsection></@cs.commentsection>
                 </div>
             <#else>
                 <div>
