@@ -1,6 +1,6 @@
 <#macro commentsection>
     <#list comments as comment>
-        <div class="media">
+        <div class="media" style="margin-bottom: 16px;">
             <div class="media-left">
                 <a href="/profile/${comment.profile.id}">
                     <img src="/profile/${comment.profile.id}/img"
