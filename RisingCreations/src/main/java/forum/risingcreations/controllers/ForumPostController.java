@@ -3,9 +3,11 @@ package forum.risingcreations.controllers;
 import forum.risingcreations.models.Comment;
 import forum.risingcreations.models.Post;
 import forum.risingcreations.models.Profile;
+import forum.risingcreations.models.User;
 import forum.risingcreations.services.CommentService;
 import forum.risingcreations.services.PostService;
 import forum.risingcreations.services.ProfileService;
+import forum.risingcreations.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,6 +29,8 @@ public class ForumPostController {
     ProfileService profileService;
     @Autowired
     CommentService commentService;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/post/{postid}")
     public String getForumPost(@PathVariable("postid") Long postid, Model model) {
@@ -51,7 +55,8 @@ public class ForumPostController {
 
     @PostMapping("/post/{postid}")
     public String postComment(@PathVariable("postid") Long postid, @RequestParam("description") String description, Principal principal) {
-        Profile profile = profileService.findProfileByName(principal.getName());
+        User u = userService.findByUsername(principal.getName());
+    	Profile profile = u.getProfile();
         Post post = postService.getById(postid);
 
         Comment comment = new Comment();
@@ -81,12 +86,13 @@ public class ForumPostController {
                     }
 
                     if (bytes != null) {
+                    	User u = userService.findByUsername(principal.getName());
                         Post post = new Post();
                         post.setImage(bytes);
                         post.setTitle(title);
                         post.setDescription(description);
                         String name = principal.getName();
-                        Profile profile = profileService.findProfileByName(name);
+                        Profile profile = u.getProfile();
                         System.out.println("Profile: " + profile);
                         post.setProfile(profile);
                         System.out.println("Name: "+name);
