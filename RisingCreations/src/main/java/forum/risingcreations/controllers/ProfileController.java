@@ -6,6 +6,7 @@ import forum.risingcreations.models.Profile;
 import forum.risingcreations.models.ProfileComment;
 import forum.risingcreations.services.ProfileService;
 
+import java.io.IOException;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 
@@ -93,6 +95,25 @@ public class ProfileController {
 			}
 			}
 		return "redirect:/login";
+	}
+	
+	@PostMapping("/profile/changeimg")
+	public String changeProfileImage(@RequestParam("img") MultipartFile img,
+			Principal principal) {
+		if (!img.isEmpty()) {
+			byte[] bytes = null;
+			try {
+				bytes = img.getBytes();
+			} catch (IOException e) {
+				System.out.println("Can't fetch data from selected image.");
+			}
+			if (bytes!=null) {
+				Profile p = profileService.findProfileByName(principal.getName());
+				p.setImage(bytes);
+				profileService.saveProfile(p);
+			}
+		}
+		return "redirect:/profile";
 	}
 
     @PostMapping("/profile/{profileid}")
