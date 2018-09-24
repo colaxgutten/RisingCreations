@@ -6,6 +6,13 @@
             <div class="profile">
                 <img src="/profile/${profileid}/img" class="rounded float-left img-thumbnail profileimg" alt="Profile Image"
                      style="width: 200px; height: 200px; margin-right: 20px;">
+                     <form id="changeProfilePictureForm" name="changeProfilePictureForm" action="/profile/changeimg" method="POST" enctype="multipart/form-data">
+                     <#if _csrf??>
+               			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>  
+                	</#if>
+                		<p>Change image</p>
+                     	<input type="file" name="img" id="get_file" onchange="form.submit()">
+                     </form>
                 <h3>${profilename}</h3>
                 <hr/>
             </div>
