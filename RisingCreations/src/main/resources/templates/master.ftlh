@@ -16,17 +16,22 @@
     <script defer src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet"
           href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" async/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <ul class="nav navbar-nav">
-    <li><a href="/">Home</a></li>
-    <li><a href="/profile">Profile</a></li>
-  </ul>
-</nav>
+<div style="position: fixed; height: 100%; overflow: hidden; background: white;">
+    <div class="col-2">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
 	 		<#nested/>
 
 </body>
