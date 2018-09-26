@@ -25,6 +25,6 @@
         </div>
     </div>
     <link rel="stylesheet"
-      href="css/index.css" async/>
-    <script defer src="js/index.js"></script>
+      href="/css/index.css" async/>
+    <script defer src="/js/index.js"></script>
 </@m.master>

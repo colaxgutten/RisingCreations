@@ -42,38 +42,7 @@
         </div>
     </div>
 </div>
-<script>
-function editName() {
-	document.getElementById("get_name").style.display="block";
-}
-function editImg() {
-	document.getElementById("get_file").style.display="block";
-}
-</script>
-<style>
-    .profile {
-        margin-top: 10px;
-    }
-
-    .settings {
-        float: right;
-    }
-
-    .profiledescription {
-    }
-
-    .form-group > label {
-        font-weight: 700;
-    }
-
-    .profileimg {
-        margin-top: 4px;
-        margin-right: 5px;
-    }
-
-    .profileimg:hover {
-        cursor: pointer;
-    }
-
-</style>
+<link rel="stylesheet"
+      href="/css/profile.css" async/>
+<script defer src="/js/ownerprofile.js"></script>
 </@m.master>

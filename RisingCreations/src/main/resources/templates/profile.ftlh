@@ -25,33 +25,6 @@
         </div>
     </div>
 </div>
-<style>
-    .comment-desc {
-        margin-left: 10px;
-    }
-
-    .profile {
-        margin-top: 10px;
-    }
-
-    .settings {
-        float: right;
-    }
-
-    .profiledescription {
-    }
-
-    .form-group > label {
-        font-weight: 700;
-    }
-
-    .profileimg {
-        margin-top: 4px;
-        margin-right: 5px;
-    }
-
-</style>
-<script>
-    $('#profileli').addClass("active");
-</script>
+<link rel="stylesheet"
+      href="/css/profile.css" async/>
 </@m.master>
