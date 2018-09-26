@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface ProfileRepository extends CrudRepository<Profile, Long> {
 
-    public Profile findProfileByName(String name);
+    public Profile[] findProfileByName(String name);
+    
+    public Profile[] findProfileByNameStartingWith(String subname);
 
 }

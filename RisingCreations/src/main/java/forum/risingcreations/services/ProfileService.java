@@ -17,7 +17,7 @@ public class ProfileService {
         return profileRepository.findById(id).orElse(null);
     }
 
-    public Profile findProfileByName(String name) {
+    public Profile[] findProfileByName(String name) {
     	
         return profileRepository.findProfileByName(name);
     }
@@ -25,4 +25,16 @@ public class ProfileService {
     public void saveProfile(Profile profile) {
     	profileRepository.save(profile);
     }
+
+	public String[] findNamesStartingWith(String subname) {
+		Profile[] profiles =profileRepository.findProfileByNameStartingWith(subname);
+		String[] names = null;
+		if (profiles!=null) {
+			names = new String[profiles.length];
+			for (int i = 0;i<profiles.length;i++) {
+				names[i]=profiles[i].getName();
+			}
+		}
+		return names;
+	}
 }
