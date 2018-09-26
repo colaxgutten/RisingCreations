@@ -27,8 +27,8 @@ public class IndexController {
 	
 	@Autowired
 	private CommentService commentService;
-	
-	
+
+
 	@GetMapping("/")
 	public String getIndex(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model){
 		List<Post> postList = postService.getAllPostsAsList();
@@ -37,5 +37,15 @@ public class IndexController {
 		model.addAttribute("posts", postList);
 
 		return "index";
+	}
+
+	@GetMapping("/test")
+	public String getTest(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model){
+		List<Post> postList = postService.getAllPostsAsList();
+
+		model.addAttribute("name", name);
+		model.addAttribute("posts", postList);
+
+		return "test";
 	}
 }

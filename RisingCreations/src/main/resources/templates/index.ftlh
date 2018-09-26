@@ -17,9 +17,6 @@
                     </#list>
                 </#if>
             </div>
-            <div>
-            	<a class="btn btn-primary" href="/post">Post</a>
-            </div>
             <div id="modal" class="custommodal">
                 <span id="close" class="close-btn">&times;</span>
                 <img id="modalimg" class="custommodal-content">

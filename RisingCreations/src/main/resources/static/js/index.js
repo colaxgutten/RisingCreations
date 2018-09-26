@@ -19,3 +19,5 @@ $(document).keyup(function (e) {
         modal.style.display = "none";
     }
 });
+
+$('#homeli').addClass("active");

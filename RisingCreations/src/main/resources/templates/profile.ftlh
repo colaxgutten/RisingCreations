@@ -51,4 +51,7 @@
     }
 
 </style>
+<script>
+    $('#profileli').addClass("active");
+</script>
 </@m.master>
