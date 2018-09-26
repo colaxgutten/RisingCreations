@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- https://bootstrapious.com/p/bootstrap-sidebar -->
     <title>RisingCreations</title>
     <meta name="description" content="Forum for sharing Rising World creations">
     <meta charset="UTF-8">
