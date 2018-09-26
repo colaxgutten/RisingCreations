@@ -1,5 +1,9 @@
 package forum.risingcreations.controllers;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,16 +35,16 @@ public class SearchRestController {
 		return jsonString;
 	}
 	
-	@GetMapping("/searh/profile/{profilename}")
+	@GetMapping("/search/profile/{profilename}")
 	public String getProfileSearchResults(@PathVariable("profilename")String profilename) {
-		Profile[] result = profileService.findProfileByName(profilename);
+		List<Profile> result = Arrays.asList(profileService.findProfileByName(profilename));
 		String jsonString = "";
 		if (result!=null) {
 			ObjectMapper mapper = new ObjectMapper();		
 			try {
-				jsonString +=mapper.writeValueAsString(result);
+				jsonString +=mapper.writeValueAsString((Object)result);
 			} catch (Exception e) {
-				System.out.println("Didn't manage to write results as json-string");
+				e.printStackTrace();
 			}
 		}
 		return jsonString;

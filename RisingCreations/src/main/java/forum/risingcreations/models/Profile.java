@@ -1,5 +1,6 @@
 package forum.risingcreations.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -14,16 +15,19 @@ public class Profile {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     
+    @JsonIgnore
     @OneToOne(mappedBy="profile", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private User user;
 
     @JsonIgnore
     @Lob
     private byte[] image;
-
+    
+    @JsonBackReference
     @OneToMany(mappedBy="profile", cascade=CascadeType.ALL)
     List<ProfileComment> comments = new ArrayList<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy="commenter", fetch=FetchType.LAZY)
     List<ProfileComment> commenter = new ArrayList<>();
 

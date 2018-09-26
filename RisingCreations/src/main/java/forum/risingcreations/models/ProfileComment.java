@@ -1,6 +1,9 @@
 package forum.risingcreations.models;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -18,10 +21,12 @@ public class ProfileComment {
     @Column(nullable = false)
     private LocalDateTime date = LocalDateTime.now();
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "commenter_id")
     private Profile commenter;
