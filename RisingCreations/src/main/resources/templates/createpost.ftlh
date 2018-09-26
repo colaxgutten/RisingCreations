@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">
                     <label for="desc">Description:</label>
-                    <input name="desc" type="text" class="form-control" id="desc" required>
+                    <textarea name="desc" class="form-control" rows="5" id="text"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="img">Image:</label>
