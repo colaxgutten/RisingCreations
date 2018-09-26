@@ -23,23 +23,25 @@
 </head>
 <body>
 <div class="wrapper">
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>Rising Creations</h3>
-        </div>
+    <aside>
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Rising Creations</h3>
+            </div>
 
-        <ul class="list-unstyled components">
-            <li id="homeli">
-                <a href="/">Home</a>
-            </li>
-            <li id="profileli">
-                <a href="/profile">Profile</a>
-            </li>
-        </ul>
-        <div style="margin: 0 10px 0 10px;">
-            <a class="btn btn-primary btn-lg btn-block" href="/post">Create Post</a>
-        </div>
-    </nav>
+            <ul class="list-unstyled components">
+                <li id="homeli">
+                    <a href="/">Home</a>
+                </li>
+                <li id="profileli">
+                    <a href="/profile">Profile</a>
+                </li>
+            </ul>
+            <div style="margin: 0 10px 0 10px;">
+                <a class="btn btn-primary btn-lg btn-block" href="/post">Create Post</a>
+            </div>
+        </nav>
+    </aside>
     <#nested/>
 </div>
 </body>
