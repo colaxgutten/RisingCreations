@@ -3,10 +3,12 @@ package forum.risingcreations.controllers;
 import forum.risingcreations.models.Comment;
 import forum.risingcreations.models.Post;
 import forum.risingcreations.models.Profile;
+import forum.risingcreations.models.Tag;
 import forum.risingcreations.models.User;
 import forum.risingcreations.services.CommentService;
 import forum.risingcreations.services.PostService;
 import forum.risingcreations.services.ProfileService;
+import forum.risingcreations.services.TagService;
 import forum.risingcreations.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,8 @@ public class ForumPostController {
     CommentService commentService;
     @Autowired
     UserService userService;
+    @Autowired
+    TagService tagService;
 
     @GetMapping("/post/{postid}")
     public String getForumPost(@PathVariable("postid") Long postid, Model model) {
@@ -87,6 +91,9 @@ public class ForumPostController {
                     }
 
                     if (bytes != null) {
+                    	Tag t = new Tag();
+                    	t.setTagName("TestTag");
+                    	tagService.saveTag(t);
                     	User u = userService.findByUsername(principal.getName());
                         Post post = new Post();
                         post.setImage(bytes);

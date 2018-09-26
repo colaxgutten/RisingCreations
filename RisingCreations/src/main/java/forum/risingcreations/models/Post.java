@@ -16,7 +16,10 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    
+    @OneToMany
+    private List<Tag> tags = new ArrayList<>();
+    
     @ManyToOne(targetEntity = Profile.class)
     @JoinColumn(name = "profile")
     private Profile profile;
@@ -39,6 +42,18 @@ public class Post {
 
     public Long getId() {
         return id;
+    }
+    
+    public List<Tag> getTags(){
+    	return tags;
+    }
+    
+    public void setTags(List<Tag> tags) {
+    	this.tags=tags;
+    }
+    
+    public void addTag(Tag t) {
+    	tags.add(t);
     }
 
     public Profile getProfile() {
