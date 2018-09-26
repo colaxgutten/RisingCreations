@@ -43,8 +43,8 @@
             <a class="btn btn-primary btn-lg btn-block" href="/post">Create Post</a>
         </div>
     </nav>
+    <#nested/>
 </div>
-        <#nested/>
 
 </body>
 </html>
