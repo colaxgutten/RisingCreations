@@ -8,6 +8,7 @@ function imgclick(url, title) {
     modalimage.src = url;
 }
 
+/*
 var close = document.getElementById('close');
 
 close.onclick = function () {
@@ -19,5 +20,6 @@ $(document).keyup(function (e) {
         modal.style.display = "none";
     }
 });
+*/
 
 $('#homeli').addClass("active");
