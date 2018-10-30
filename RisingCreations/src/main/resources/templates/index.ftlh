@@ -1,6 +1,6 @@
 <#import "master.ftlh" as m>
 <@m.master>
-     <div class="container">
+     <div class="container-fluid">
          <div class="col-8 offset-2">
          <#list posts as post>
              <div class="row" style="margin-bottom: 10px;">
@@ -17,6 +17,6 @@
          </#list>
          </div>
      </div>
-    <link rel="stylesheet" href="/css/index.css" async/>
+    <link rel="stylesheet" href="/css/index.css"/>
     <script defer src="/js/index.js"></script>
 </@m.master>

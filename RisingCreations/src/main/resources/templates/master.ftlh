@@ -17,9 +17,9 @@
     <script defer src="/webjars/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script defer src="/js/master.js"></script>
     <link rel="stylesheet"
-          href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css" async/>
+          href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css"/>
     <link rel="stylesheet"
-          href="/css/master.css" async/>
+          href="/css/master.css"/>
 </head>
 <body>
 <div class="wrapper">
@@ -40,7 +40,9 @@
             <a class="btn btn-primary btn-lg btn-block" href="/post">Create Post</a>
         </div>
     </nav>
-    <#nested/>
+    <div id="content-container" style="width: 100%;">
+        <#nested/>
+    </div>
 </div>
 </body>
 </html>
