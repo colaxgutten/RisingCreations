@@ -58,6 +58,22 @@ public class DatabaseDefaultConfig implements ApplicationRunner {
 
         postService.save(post);
 
+        Post secondPost = new Post();
+        secondPost.setImage(Base64.getDecoder().decode(getPicture().getBytes()));
+        secondPost.setTitle("Second Post Ever");
+        secondPost.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis lorem eget aliquam dapibus. Aenean porta commodo fermentum. Nullam eu quam et nunc ultrices posuere. Aenean sit amet aliquam diam. Etiam commodo purus in consectetur commodo volutpat.");
+        secondPost.setProfile(profile);
+
+        postService.save(secondPost);
+
+        Post thirdPost = new Post();
+        thirdPost.setImage(Base64.getDecoder().decode(getPicture().getBytes()));
+        thirdPost.setTitle("Number 3");
+        thirdPost.setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras convallis lorem eget aliquam dapibus. Aenean porta commodo fermentum. Nullam eu quam et nunc ultrices posuere. Aenean sit amet aliquam diam. Etiam commodo purus in consectetur commodo volutpat.");
+        thirdPost.setProfile(profile);
+
+        postService.save(thirdPost);
+
         Comment comment = new Comment();
         comment.setProfile(profile);
         comment.setPost(post);

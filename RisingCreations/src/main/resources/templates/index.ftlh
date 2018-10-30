@@ -1,30 +1,22 @@
 <#import "master.ftlh" as m>
 <@m.master>
-	<div class="container">
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2">
-                <#if posts??>
-                    <#list posts as post>
-                    <div class="gallery">
-                        <a href="/post/${post.id}">
-                            <div class="desc">
-                                ${post.title}
-                            </div>
-                        </a>
-                        <img src="/post/${post.id}/img" onclick="imgclick('/post/${post.id}/img', '${post.title}')"
-                             class="gallery-img">
-                    </div>
-                    </#list>
-                </#if>
-            </div>
-            <div id="modal" class="custommodal">
-                <span id="close" class="close-btn">&times;</span>
-                <img id="modalimg" class="custommodal-content">
-                <div id="caption" class="custommodal-caption"></div>
-            </div>
-        </div>
-    </div>
-    <link rel="stylesheet"
-      href="/css/index.css" async/>
+     <div class="container-fluid">
+         <div class="col-8 offset-2">
+         <#list posts as post>
+             <div class="row" style="margin-bottom: 10px;">
+                 <div class="col-12">
+                     <div class="card">
+                         <div class="card-header"><a href="/post/${post.id}">${post.title}</a></div>
+                         <div class="card-body">
+                             <img src="/post/${post.id}/img" class="rounded mx-auto d-block" width="100%" height="100%"
+                                  alt="${post.title}">
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </#list>
+         </div>
+     </div>
+    <link rel="stylesheet" href="/css/index.css"/>
     <script defer src="/js/index.js"></script>
 </@m.master>

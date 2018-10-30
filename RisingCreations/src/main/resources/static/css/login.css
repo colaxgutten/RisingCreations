@@ -32,7 +32,6 @@
 }
 
 body {
-    background-image: url('/risingWorldBackground.jpg');
-    background-repeat: no-repeat;
+    background: url('/risingWorldBackground.jpg') no-repeat;
     background-size: cover;
 }

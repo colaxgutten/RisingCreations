@@ -1,6 +1,6 @@
 <#import "master.ftlh" as m>
 <@m.master>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-sm-6 offset-sm-3">
             <h1>Create a post below</h1>
@@ -13,8 +13,8 @@
                     <input name="title" type="text" class="form-control" id="title" required>
                 </div>
                 <div class="form-group">
-                    <label for="desc">Description:</label>
-                    <input name="desc" type="text" class="form-control" id="desc" required>
+                    <label for="text">Description:</label>
+                    <textarea name="desc" class="form-control" rows="5" id="text"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="img">Image:</label>

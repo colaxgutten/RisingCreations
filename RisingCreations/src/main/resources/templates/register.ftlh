@@ -1,5 +1,5 @@
-<#import "master.ftlh" as m />
-<@m.master>
+<#import "loginmaster.ftlh" as m />
+<@m.loginmaster>
 <div class="parent">
     <div class="child">
         <div class="login-box">
@@ -25,5 +25,5 @@
     </div>
 </div>
 <link rel="stylesheet"
-      href="/css/login.css" async/>
-</@m.master>
+      href="/css/login.css"/>
+</@m.loginmaster>
