@@ -162,4 +162,13 @@ public class ProfileController {
         return "redirect:/profile/" + profileid;
     }
 
+	@GetMapping("/profile/posts")
+	public String getMyOwnPosts(Model model, Principal principal) {
+		User u = userService.findByUsername(principal.getName());
+		Profile profile = u.getProfile();
+
+		model.addAttribute("posts", profile.getPosts());
+
+		return "ownerposts";
+	}
 }

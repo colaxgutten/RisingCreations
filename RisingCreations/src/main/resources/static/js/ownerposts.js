@@ -1,0 +1,1 @@
+$('#mypostsli').addClass("active");

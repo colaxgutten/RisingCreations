@@ -38,6 +38,9 @@ public class Profile {
     @OneToMany(mappedBy="commenter", fetch=FetchType.LAZY)
     List<ProfileComment> commenter = new ArrayList<>();
 
+    @OneToMany(mappedBy = "profile", fetch=FetchType.LAZY)
+    List<Post> posts = new ArrayList<>();
+
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
@@ -127,4 +130,6 @@ public class Profile {
     public Set<Post> getLikes() { return likes; }
 
     public Set<Post> getLoves() { return loves; }
+
+    public List<Post> getPosts() { return posts; }
 }

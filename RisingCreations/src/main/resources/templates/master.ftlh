@@ -36,6 +36,9 @@
             <li id="profileli">
                 <a href="/profile">Profile</a>
             </li>
+            <li id="mypostsli">
+                <a href="/profile/posts">My Posts</a>
+            </li>
         </ul>
         <div style="margin: 0 10px 0 10px;">
             <a class="btn btn-primary btn-lg btn-block" href="/post">Create Post</a>
