@@ -28,7 +28,10 @@ public class Post {
     List<Comment> comments = new ArrayList<>();
 
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
+
     private LocalDateTime date = LocalDateTime.now();
 
     @JsonIgnore
