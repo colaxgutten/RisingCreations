@@ -3,8 +3,8 @@
      <div class="container-fluid">
          <div class="col-8 offset-2">
          <#list posts as post>
-             <div class="row" style="margin-bottom: 10px;">
-                 <div class="col-12">
+             <div class="row" style="margin-bottom: 10px">
+                 <div class="col-8 offset-2">
                      <div class="card">
                          <div class="card-header"><a href="/post/${post.id}">${post.title}</a></div>
                          <div class="card-body">
