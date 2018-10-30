@@ -22,7 +22,12 @@ public class Profile {
     @JsonIgnore
     @Lob
     private byte[] image;
-    
+
+    private String name;
+
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
     @JsonBackReference
     @OneToMany(mappedBy="profile", cascade=CascadeType.ALL)
     List<ProfileComment> comments = new ArrayList<>();
@@ -68,9 +73,6 @@ public class Profile {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	private String name;
-    private String description;
 
     public Long getId() {
         return id;
