@@ -4,6 +4,7 @@ import forum.risingcreations.models.*;
 import forum.risingcreations.services.CommentService;
 import forum.risingcreations.services.PostService;
 import forum.risingcreations.services.ProfileService;
+import forum.risingcreations.services.TagService;
 import forum.risingcreations.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -21,6 +22,9 @@ public class DatabaseDefaultConfig implements ApplicationRunner {
 
     @Autowired
     private PostService postService;
+    
+    @Autowired
+    private TagService tagService;
 
     @Autowired
     private CommentService commentService;
@@ -57,6 +61,20 @@ public class DatabaseDefaultConfig implements ApplicationRunner {
         post.setProfile(profile);
 
         postService.save(post);
+        
+        Tag tag1 = new Tag();
+        tag1.setTagName("test");
+        Tag tag2 = new Tag();
+        tag2.setTagName("test2");
+        Tag tag3 = new Tag();
+        tag3.setTagName("tag3");
+        Tag tag4 = new Tag();
+        tag4.setTagName("mario");
+        tagService.saveTag(tag1);
+        tagService.saveTag(tag2);
+        tagService.saveTag(tag3);
+        tagService.saveTag(tag4);
+        
 
         Post secondPost = new Post();
         secondPost.setImage(Base64.getDecoder().decode(getPicture().getBytes()));
