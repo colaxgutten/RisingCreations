@@ -131,6 +131,15 @@ public class ProfileController {
 		return "redirect:/profile";
 	}
 
+	@PostMapping("/profile/changedesc")
+	public String changeDescription(@RequestParam("desc")String desc, Principal principal) {
+		User u = userService.findByUsername(principal.getName());
+		Profile p = u.getProfile();
+		p.setDescription(desc);
+		profileService.saveProfile(p);
+		return "redirect:/profile";
+	}
+
     @PostMapping("/profile/{profileid}")
     public String postComment(@PathVariable("profileid") Long profileid, @RequestParam("description") String description, Principal principal) {
         if(principal == null)
