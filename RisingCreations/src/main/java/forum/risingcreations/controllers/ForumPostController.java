@@ -78,6 +78,7 @@ public class ForumPostController {
     String postCreateForumPost(@RequestParam("title") String title,
                                @RequestParam("desc") String description,
                                @RequestParam("img") MultipartFile imageFile,
+                               @RequestParam("tag") String tagName,
                                Principal principal) {
         if (!title.isEmpty()) {
             if (!description.isEmpty()) {
@@ -91,14 +92,15 @@ public class ForumPostController {
                     }
 
                     if (bytes != null) {
-                    	Tag t = new Tag();
-                    	t.setTagName("TestTag");
-                    	tagService.saveTag(t);
                     	User u = userService.findByUsername(principal.getName());
                         Post post = new Post();
                         post.setImage(bytes);
                         post.setTitle(title);
                         post.setDescription(description);
+                        if (tagName!=null && tagName.length()>0) {
+                        	Tag t = tagService.getTagByName(tagName);
+                        	post.addTag(t);
+                        }
                         String name = principal.getName();
                         Profile profile = u.getProfile();
                         System.out.println("Profile: " + profile);

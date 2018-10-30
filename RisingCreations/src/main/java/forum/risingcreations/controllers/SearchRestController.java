@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import forum.risingcreations.models.Profile;
+import forum.risingcreations.models.Tag;
 import forum.risingcreations.services.ProfileService;
+import forum.risingcreations.services.TagService;
 
 
 @RestController
@@ -20,6 +22,8 @@ public class SearchRestController {
 	
 	@Autowired
 	ProfileService profileService;
+	@Autowired
+	TagService tagService;
 	
 	
 	@GetMapping("/search/autocomplete/profilename/{subname}")
@@ -32,6 +36,22 @@ public class SearchRestController {
 		} catch (Exception e) {
 			System.out.println("Didn't manage to write list of names as json-string");
 		}
+		return jsonString;
+	}
+	
+	@GetMapping("/search/autocomplete/tag/{tagname}")
+	public String getTagsBySubname(@PathVariable("tagname")String tagName) {
+		String jsonString = "";
+		List<Tag> tags = tagService.getTagsBySubName(tagName);
+		if (tags!=null) {
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			jsonString += mapper.writeValueAsString((Object)tags);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		}
+		System.out.println("Searching for tags starting with: "+tagName +". Reult: "+jsonString);
 		return jsonString;
 	}
 	
