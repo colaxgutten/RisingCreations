@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "profile")
@@ -35,6 +37,26 @@ public class Profile {
     @JsonBackReference
     @OneToMany(mappedBy="commenter", fetch=FetchType.LAZY)
     List<ProfileComment> commenter = new ArrayList<>();
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "profile_likes_posts",
+            joinColumns = @JoinColumn(name = "profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    Set<Post> likes = new HashSet<>();
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "profile_loves_posts",
+            joinColumns = @JoinColumn(name = "profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    Set<Post> loves = new HashSet<>();
 
     public User getUser() {
 		return user;
@@ -93,4 +115,16 @@ public class Profile {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void addLikedPost(Post post) { this.likes.add(post); }
+
+    public void addLovedPost(Post post) { this.loves.add(post); }
+
+    public void removeLikedPost(Post post) { this.likes.remove(post); }
+
+    public void removeLovedPost(Post post) { this.loves.remove(post); }
+
+    public Set<Post> getLikes() { return likes; }
+
+    public Set<Post> getLoves() { return loves; }
 }

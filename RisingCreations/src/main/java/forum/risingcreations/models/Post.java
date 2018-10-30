@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -33,6 +35,12 @@ public class Post {
     private String description;
 
     private LocalDateTime date = LocalDateTime.now();
+
+    @ManyToMany(mappedBy = "likes")
+    private Set<Profile> likes = new HashSet<>();
+
+    @ManyToMany(mappedBy = "loves")
+    private Set<Profile> loves = new HashSet<>();
 
     @JsonIgnore
     @Lob
@@ -111,4 +119,27 @@ public class Post {
         return this.date.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM, FormatStyle.MEDIUM));
     }
 
+    public void addLiker(Profile profile) {
+        profile.addLikedPost(this);
+        likes.add(profile);
+    }
+
+    public void addLover(Profile profile) {
+        profile.addLovedPost(this);
+        loves.add(profile);
+    }
+
+    public void removeLiker(Profile profile) {
+        profile.removeLikedPost(this);
+        likes.remove(profile);
+    }
+
+    public void removeLover(Profile profile) {
+        profile.removeLovedPost(this);
+        loves.remove(profile);
+    }
+
+    public Set<Profile> getLikes() { return likes; }
+
+    public Set<Profile> getLoves() { return loves; }
 }

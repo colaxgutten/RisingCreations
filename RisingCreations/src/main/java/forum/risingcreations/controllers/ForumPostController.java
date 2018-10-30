@@ -11,6 +11,7 @@ import forum.risingcreations.services.ProfileService;
 import forum.risingcreations.services.TagService;
 import forum.risingcreations.services.UserService;
 
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class ForumPostController {
@@ -37,11 +39,21 @@ public class ForumPostController {
     TagService tagService;
 
     @GetMapping("/post/{postid}")
-    public String getForumPost(@PathVariable("postid") Long postid, Model model) {
+    public String getForumPost(@PathVariable("postid") Long postid, Model model, Principal principal) {
+        User u = userService.findByUsername(principal.getName());
+        Profile profile = u.getProfile();
         Post p = postService.getById(postid);
 
         model.addAttribute("comments", p.getComments());
         model.addAttribute("post", p);
+
+        Set<Profile> likes = p.getLikes();
+        Set<Profile> loves = p.getLoves();
+
+        model.addAttribute("likes", likes.size());
+        model.addAttribute("loves", loves.size());
+        model.addAttribute("liked", likes.contains(profile));
+        model.addAttribute("loved", loves.contains(profile));
 
         return "forumpost";
     }
@@ -71,6 +83,44 @@ public class ForumPostController {
         commentService.save(comment);
 
         return "redirect:/post/"+postid;
+    }
+
+    @PostMapping("/post/{postid}/like")
+    public @ResponseBody
+    Pair<Integer, Boolean> likePost(@PathVariable("postid") Long postid, Principal principal) {
+        User u = userService.findByUsername(principal.getName());
+        Profile profile = u.getProfile();
+        Post post = postService.getById(postid);
+
+        boolean liked = post.getLikes().contains(profile);
+
+        if (liked) {
+            post.removeLiker(profile);
+        } else {
+            post.addLiker(profile);
+        }
+        postService.save(post);
+
+        return new Pair<>(post.getLikes().size(), !liked);
+    }
+
+    @PostMapping("/post/{postid}/love")
+    public @ResponseBody
+    Pair<Integer, Boolean> lovePost(@PathVariable("postid") Long postid, Principal principal) {
+        User u = userService.findByUsername(principal.getName());
+        Profile profile = u.getProfile();
+        Post post = postService.getById(postid);
+
+        boolean loved = post.getLoves().contains(profile);
+
+        if (loved) {
+            post.removeLover(profile);
+        } else {
+            post.addLover(profile);
+        }
+        postService.save(post);
+
+        return new Pair<>(post.getLoves().size(), !loved);
     }
 
     @PostMapping("/post")
