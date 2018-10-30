@@ -21,3 +21,8 @@
     margin-top: 4px;
     margin-right: 5px;
 }
+
+.ownerimg:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
