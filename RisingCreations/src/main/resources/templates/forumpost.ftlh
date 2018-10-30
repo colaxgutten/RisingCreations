@@ -25,7 +25,7 @@
                 </div>
                 <div style="display: inline-block; width: 100%; margin-top: 6px;">
                     <span class="icon-container" onclick="loveOrLike('/post/${post.id}/love', 'loveCounter', 'lovebtn', 'fa-heart fa-lg')">
-                        <span id="loveCounter">${loves}</span>
+                        <span id="loveCounter">${post.loveCounter}</span>
                         <#if loved>
                             <i id="lovebtn" class="fas fa-heart fa-lg"></i>
                         <#else>
@@ -33,7 +33,7 @@
                         </#if>
                     </span>
                     <span class="icon-container" onclick="loveOrLike('/post/${post.id}/like', 'likeCounter', 'likebtn', 'fa-thumbs-up fa-lg')">
-                        <span id="likeCounter">${likes}</span>
+                        <span id="likeCounter">${post.likeCounter}</span>
                         <#if liked>
                             <i id="likebtn" class="fas fa-thumbs-up fa-lg"></i>
                         <#else>

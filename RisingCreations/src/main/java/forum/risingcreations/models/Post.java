@@ -36,11 +36,15 @@ public class Post {
 
     private LocalDateTime date = LocalDateTime.now();
 
-    @ManyToMany(mappedBy = "likes")
+    @ManyToMany(mappedBy = "likes", fetch = FetchType.LAZY)
     private Set<Profile> likes = new HashSet<>();
 
-    @ManyToMany(mappedBy = "loves")
+    private long likeCounter;
+
+    @ManyToMany(mappedBy = "loves", fetch = FetchType.LAZY)
     private Set<Profile> loves = new HashSet<>();
+
+    private long loveCounter;
 
     @JsonIgnore
     @Lob
@@ -122,24 +126,36 @@ public class Post {
     public void addLiker(Profile profile) {
         profile.addLikedPost(this);
         likes.add(profile);
+
+        likeCounter = likes.size();
     }
 
     public void addLover(Profile profile) {
         profile.addLovedPost(this);
         loves.add(profile);
+
+        loveCounter = loves.size();
     }
 
     public void removeLiker(Profile profile) {
         profile.removeLikedPost(this);
         likes.remove(profile);
+
+        likeCounter = likes.size();
     }
 
     public void removeLover(Profile profile) {
         profile.removeLovedPost(this);
         loves.remove(profile);
+
+        loveCounter = loves.size();
     }
 
     public Set<Profile> getLikes() { return likes; }
 
     public Set<Profile> getLoves() { return loves; }
+
+    public long getLikeCounter() { return likeCounter; }
+
+    public long getLoveCounter() { return loveCounter; }
 }

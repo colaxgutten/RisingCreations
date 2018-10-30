@@ -47,13 +47,8 @@ public class ForumPostController {
         model.addAttribute("comments", p.getComments());
         model.addAttribute("post", p);
 
-        Set<Profile> likes = p.getLikes();
-        Set<Profile> loves = p.getLoves();
-
-        model.addAttribute("likes", likes.size());
-        model.addAttribute("loves", loves.size());
-        model.addAttribute("liked", likes.contains(profile));
-        model.addAttribute("loved", loves.contains(profile));
+        model.addAttribute("liked", profile.getLikes().contains(p));
+        model.addAttribute("loved", profile.getLoves().contains(p));
 
         return "forumpost";
     }
