@@ -20,6 +20,7 @@
           href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css"/>
     <link rel="stylesheet"
           href="/css/master.css"/>
+    <link rel="stylesheet" href="/webjars/font-awesome/5.4.1/css/all.css"/>
 </head>
 <body>
 <div class="wrapper">
