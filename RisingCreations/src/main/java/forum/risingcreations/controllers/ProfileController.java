@@ -164,6 +164,10 @@ public class ProfileController {
 
 	@GetMapping("/profile/posts")
 	public String getMyOwnPosts(Model model, Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
 		User u = userService.findByUsername(principal.getName());
 		Profile profile = u.getProfile();
 
